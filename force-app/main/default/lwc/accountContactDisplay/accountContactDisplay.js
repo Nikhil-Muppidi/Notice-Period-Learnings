@@ -40,7 +40,7 @@ export default class AccountContactDisplay extends LightningElement {
                 let conCount =   item.contactCount;
                 
                 //if contacts is 0, false, else same 
-                conCount = conCount ==0 ? false : conCount;
+                conCount = conCount ===0 ? false : conCount;
                 //console.log('conCount'+conCount)
 
                 //console.log('conlist '+item.contactList);
@@ -49,7 +49,7 @@ export default class AccountContactDisplay extends LightningElement {
                 let contacts = item.contactList.map(i=>{
                     let email = i.Email;
                     console.log('email'+email);
-                    email = email == undefined ? false : email;
+                    email = email === undefined ? false : email;
                     console.log('email after tra'+email)
                     return {...i, "Email": email}
                 })

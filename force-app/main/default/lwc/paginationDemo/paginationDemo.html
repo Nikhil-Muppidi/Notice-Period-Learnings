@@ -1,0 +1,16 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Pagination" icon-name="custom:custom63">
+        <div class="slds-var-m-around_medium">
+       
+             <template if:true={visibleContacts} for:each={visibleContacts} for:item="con" for:index="index">
+                <li key={con.Id}>
+                        {con.Name}
+                </li>
+             </template>
+          
+        </div>
+        <div slot="footer" class="slds-var-m-horizantal_medium">
+            <c-pagination records={totalContacts} onupdate={updateContactHandler}></c-pagination>
+        </div>
+    </lightning-card>
+</template>

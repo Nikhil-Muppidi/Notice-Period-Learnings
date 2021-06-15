@@ -1,0 +1,62 @@
+<template>
+    <div class="slds-m-vertical_xx-small">
+        <lightning-card  variant="Narrow"  title="Account With Contacts using Wrapper class in LWC" icon-name="standard:account">
+            <template if:true={accountsWithContacts}>
+                <div class="slds-m-around_medium">
+                    <template for:each={accountsWithContact} for:item="accCon">
+                        <!--Showing Account Name-->
+                        <lightning-badge style="color:green;" label={accCon.accRecord.Name} key={accCon.accRecord.Id}
+                         icon-name="standard:account">
+                        </lightning-badge>
+                        
+                        <!--Showing Total Number of Contacts for that account-->
+                        <span key={accCon.accRecord.Id} class="slds-m-left_x-small">
+                            Total Number of Contacts for {accCon.accRecord.Name} : {accCon.contactCount}
+                        </span>
+
+                        <!--If No contacts Found, Show No Contacts Found-->
+                        
+                        <template if:false={accCon.contactCount}>
+                            <div class="slds-grid slds-gutters" key={accCon.accRecord.Id} >
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning-card  variant="Narrow"  title="No Contacts Found"  class="slds-text-color_error" icon-name="standard:account">
+                                     
+                                    </lightning-card>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!--If contacts Found, Show  Contacts Details-->
+                        <template if:true={accCon.contactCount}>
+                            <div class="slds-grid slds-gutters" key={accCon.accRecord.Id} >
+                                <template for:each={accCon.contactList} for:item="con">
+                                    <div class="slds-col slds-size_1-of-4" key={con.Id}>
+                                        <lightning-card  variant="Narrow"  title={con.Name} icon-name="standard:account">
+                                            <p class="slds-m-horizontal_small">First Name : <strong>{con.FirstName}</strong></p>
+                                            <p class="slds-m-horizontal_small">Last Name : <strong>{con.LastName}</strong></p>
+                                            
+                                            <p slot="footer">
+                                                <template if:false={con.Email}>
+                                                    <p class="slds-text-color_error">No Email found</p>
+                                                </template>
+                                                <template if:true={con.Email}>
+                                                    <p class="slds-text-color_success"> Contact Email: {con.Email} </p>
+                                                </template>
+                                                
+                                            </p>
+                                        </lightning-card>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                       
+                        
+                    </template>
+                </div>
+                
+            </template>
+            <p slot="footer">Account Contact Details</p>
+        </lightning-card>
+    </div>
+    
+</template>

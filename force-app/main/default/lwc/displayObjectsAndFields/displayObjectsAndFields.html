@@ -1,0 +1,57 @@
+<template>
+    <lightning-card>      
+        <p class="slds-p-horizontal_large">Select Object from dropdown:</p>        
+        <lightning-combobox 
+            name="progress"
+            label="Object Name"
+            value={value}
+            placeholder="Select Object"
+            options={statusOptions}
+            onchange={handleChange}
+            required
+            >
+        </lightning-combobox>
+        
+        <br></br>
+        <p class="slds-p-horizontal_medium">List of Fields of {value} </p>
+        
+        <div style="height: 200px;">
+            <lightning-datatable 
+                key-field="id"
+                data={tableData}
+                onrowselection={handleRowAction}
+                columns={columns}>
+            </lightning-datatable>
+        </div> 
+
+        <div>
+            <lightning-combobox 
+                name="progress"
+                label="Select Number records to be displayed"
+                value={recordsValue}
+                options={limitRecordOptions}
+                onchange={limitRecordHandler}
+                >
+            </lightning-combobox>
+        </div>
+    
+        <lightning-textarea 
+            name="txaSelectedFields"
+            value={selectedFieldsValue}
+            label="Selected Fields" readonly>
+        </lightning-textarea>
+    
+        <lightning-button variant="brand" label="Retrieve Records" 
+                title="Retrieve Records" onclick={handleClick} 
+                class="slds-m-left_x-small">
+        </lightning-button>
+        <lightning-button variant="brand" label="Reset" 
+                title="Reset" onclick={handleResetClick} 
+                class="slds-m-left_x-small">
+        </lightning-button>
+
+
+        <p>Current User Id:  {userId}</p>
+    
+    </lightning-card>
+</template>
